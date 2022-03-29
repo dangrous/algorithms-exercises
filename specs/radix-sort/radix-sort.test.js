@@ -68,7 +68,7 @@ describe('radix sort', function () {
     const nums = new Array(fill)
       .fill()
       .map(() => Math.floor(Math.random() * 500000))
-    const ans = radixSort(nums)
+    const ans = radixSort([...nums])
     // I had to change the sort() here because without parameters it sorts lexicographically
     expect(ans).toEqual(nums.sort((a, b) => a - b))
   })
