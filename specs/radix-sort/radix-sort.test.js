@@ -17,17 +17,15 @@ const getDigit = (num, place) => {
   }
 }
 
-const createQueue = (groups) => {
-  let queue = []
-
+const createQueue = (array, groups) => {
   for (let group of groups) {
     if (group) {
       for (let num of group) {
-        queue.push(num)
+        array.push(num)
       }
     }
   }
-  return queue
+  return array
 }
 
 function radixSort(array) {
@@ -37,20 +35,18 @@ function radixSort(array) {
     maxDigits = Math.max(maxDigits, num.toString().length)
   }
 
-  let queue = [...array]
-
   for (let i = 0; i < maxDigits; i++) {
     let groups = [[], [], [], [], [], [], [], [], [], []]
 
-    while (queue.length > 0) {
-      let num = queue.shift()
+    while (array.length > 0) {
+      let num = array.shift()
       let digit = getDigit(num, i)
       groups[digit].push(num)
     }
-    queue = createQueue(groups)
+    array = createQueue(array, groups)
   }
 
-  return queue
+  return array
 }
 
 // unit tests
